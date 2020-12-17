@@ -4,7 +4,7 @@ const schema = mongoose.Schema;
 
 //Schema for user
 const User = new mongoose.Schema({
-    username: {type: String, required: true, trim: true, minlength: 4, unique: true},
+    username: {type: String, required: true, trim: true, minlength: 4},
     password: {type: String, required: true, minlength: 8},
 }, {
     timestamps: true,

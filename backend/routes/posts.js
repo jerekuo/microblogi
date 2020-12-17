@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { sanitizeBody } = require("express-validator");
 
 //Get post schema from post.model file
 let Post = require('../models/post.model');

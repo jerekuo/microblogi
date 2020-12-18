@@ -13,7 +13,7 @@ let User = require("../models/user.model");
 
 //Get current user.
 router.route("/").get((req, res) => {
-  res.send(req.user); //store current user in req.user object if authentication
+  res.send(req.user); //store current user in req.user object if authentication is succesful
 });
 
 //Route for adding a new user, requires username and pasword
@@ -37,6 +37,8 @@ router.route("/add").post((req, res) => {
     }
   });
 });
+
+
 
 //Route for deleting user
 router.route("/:id").delete((req, res) => {

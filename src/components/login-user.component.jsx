@@ -3,8 +3,7 @@ import axios from 'axios';
 
 
 export default class LoginUser extends Component {
-
-
+    
     constructor(props) {
         
         super(props);
@@ -26,6 +25,12 @@ export default class LoginUser extends Component {
             password: 'salasana',
             username: 'test user',
         })
+    }
+
+    getUser(e) {
+        axios.get('http://localhost:5000/users/', {withCredentials: true})
+        .then((res) => console.log(res));
+        
     }
 
     

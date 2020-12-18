@@ -39,12 +39,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true}))
 
 //Connecting to mongoDB database via mongoose
+
 const uri = process.env.MONGO_URL;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("Database connection successful!");
-})
+}) 
+
+
+
 
 //Using routes
 const postRouter = require('./routes/posts');

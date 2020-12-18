@@ -4,14 +4,19 @@ import axios from 'axios';
 //<Link to={"/edit/"+props.exercise._id}>edit</Link> | 
 //component for post
 const Message = props => (
-    <tr>
-        <td>{props.message.user}</td>
-        <td>{props.message.message}</td>
-        <td>
-            <a href="#" onClick={() => { props.deleteMessage(props.message._id) }}>delete</a>
 
-        </td>
+    <div>
+        <div class="card red cols 12 m6">
+            <div class="card-content flow-text">
+            <span class="card-title">{props.message.user}</span>
+            <p>{props.message.message}</p>
+            </div>
+        </div>
+
+
+    <tr>
     </tr>
+    </div>
 )
 
 export default class PostList extends Component {
@@ -50,19 +55,19 @@ export default class PostList extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Wall of Posts</h3>
-                <table className="table">
-                    <thead className="thead-light">
-                        <tr>
-                            <th>username</th>
-                            <th>message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.postList()}
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="cols s12 m6">
+                    <h3>Wall of Posts</h3>
+                    <table className="table">
+                        <thead className="thead-transparent">
+                            <tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.postList()}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }

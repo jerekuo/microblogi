@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-//<Link to={"/edit/"+props.exercise._id}>edit</Link> | 
 //component for post
 const Message = props => (
 
     <div>
-        <div class="card red cols 12 m6">
+        <div class="card white cols 12 m6" >
             <div class="card-content flow-text">
             <span class="card-title">{props.message.user}</span>
             <p>{props.message.message}</p>
@@ -14,8 +13,7 @@ const Message = props => (
         </div>
 
 
-    <tr>
-    </tr>
+
     </div>
 )
 
@@ -38,6 +36,7 @@ export default class PostList extends Component {
             })
     }
 
+    //methos for delete post button, currently deleted
 
     deleteMessage(id) {
         axios.delete('http://localhost:5000/posts/' + id)
@@ -47,6 +46,7 @@ export default class PostList extends Component {
         })
     };
 
+    //filling messages array with posts
     postList() {
         return this.state.messages.map(currentMessage => {
             return <Message message={currentMessage} deleteMessage={this.deleteMessage} key={currentMessage._id} />;
@@ -55,9 +55,9 @@ export default class PostList extends Component {
 
     render() {
         return (
-            <div class="row">
+            <div className="row">
                 <div class="cols s12 m6">
-                    <h3>Wall of Posts</h3>
+                    <h3>WALL</h3>
                     <table className="table">
                         <thead className="thead-transparent">
                             <tr>

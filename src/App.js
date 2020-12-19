@@ -6,8 +6,8 @@ import 'materialize-css';
 import './App.css';
 
 import Navbar from "./components/navbar.component";
-import PostList from "./components/post-list.component.jsx";
-import CreatePost from "./components/create-post.component.jsx";
+import PostList from "./components/post-list.component";
+import CreatePost from "./components/create-post.component";
 import CreateUser from "./components/create-user.component";
 import loginUser from "./components/login-user.component";
 import findPost from "./components/find-post.component";

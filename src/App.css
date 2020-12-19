@@ -39,4 +39,6 @@
 
 .background{
   background-image: url(images/background.png);
+  background-size: cover;
 }
+

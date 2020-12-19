@@ -3,14 +3,17 @@ import axios from 'axios';
 
 //component for post
 const Message = props => (
-    <tr>
-        <td>{props.message.user}</td>
-        <td>{props.message.message}</td>
-        <td>
-            <a href="#" onClick={() => { props.deleteMessage(props.message._id) }}>delete</a>
+    <div>
+        <div class="card white cols 12 m6" >
+            <div class="card-content flow-text">
+            <span class="card-title">{props.message.user}</span>
+            <p>{props.message.message}</p>
+            </div>
+        </div>
 
-        </td>
-    </tr>
+
+
+    </div>
 )
 
 export default class PostList extends Component {
@@ -18,6 +21,7 @@ export default class PostList extends Component {
         super(props);
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.deleteMessage = this.deleteMessage.bind(this);
 
         this.state = { 
             username: "",
@@ -25,10 +29,23 @@ export default class PostList extends Component {
     }
     //Load all posts to "message" array
     componentDidMount() {
-        this.setState({
-            username: 'test user'
-        })
+        axios.get('http://localhost:5000/posts/')
+            .then(response => {
+                this.setState({ messages: response.data })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
+
+    deleteMessage(id) {
+        axios.delete('http://localhost:5000/posts/' + id)
+            .then(res => console.log(res.data));
+        this.setState({
+            messages: this.state.messages.filter(el => el._id !== id) //remove deleted post from array
+        })
+    };
+
 
 
     onChangeUsername(e) {
@@ -39,7 +56,10 @@ export default class PostList extends Component {
 
     postList() {
         return this.state.messages.map(currentMessage => {
-            return <Message message={currentMessage} deleteMessage={this.deleteMessage} key={currentMessage._id} />;
+            if (currentMessage.user == this.state.username) {
+                return <Message message={currentMessage} deleteMessage={this.deleteMessage} key={currentMessage._id} />;
+            }
+           
         })
     }
 
@@ -48,30 +68,24 @@ export default class PostList extends Component {
         
         
         //input from user
-        const user = {
-            username: this.state.username,
-        }
 
         //Get posts from defined username
-        axios.post('http://localhost:5000/posts/find', user)
+        axios.get('http://localhost:5000/posts/')
             .then(response => {
                 this.setState({ messages: response.data })
+                alert("toimii");
             })
             .catch((error) => {
                 console.log(error);
             })
 
 
-        //load posts to "message" array
-
-        console.log(this.state.currentUser +" ON TÄMÄN HETKINEN KÄYTTÄJÄ!!!");
-
-        
-        
+        //load posts to "message" array    
     }
 
     render() {
         return (
+            <div className="background">
             <div>
                 <h3>Find posts by username!</h3>
                 <form onSubmit={this.onSubmit}>
@@ -86,21 +100,18 @@ export default class PostList extends Component {
                     </div>
                     
                     <div className="form-group">
-                        <input type="submit" value="Search" className="btn btn-primary"/>
+                        <input type="submit" value="Search" className="btn btn-primary hide"/>
                     </div>
                 </form>
                 <h3>Posts by username!</h3>
                 <table className="table">
                     <thead className="thead-transparent">
-                        <tr>
-                            <th>username</th>
-                            <th>message</th>
-                        </tr>
                     </thead>
                     <tbody>
                         {this.postList()}
                     </tbody>
                 </table>
+            </div>
             </div>
         )
     }

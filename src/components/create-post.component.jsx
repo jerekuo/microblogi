@@ -48,16 +48,24 @@ export default class CreatePost extends Component {
       user: this.state.user,
     };
 
-    //message to database
-    console.log(post);
+    if (post.message.length > 299) {
+      alert("Message must be under 299 characters!");
+      window.location = "/createPost";
+      
+    } else {
+      //message to database
+      console.log(post);
 
-    //submit to database via axios API
-    axios
-      .post("http://localhost:5000/posts/add", post)
-      .then((res) => console.log(res.data)); //log the result to console
+      //submit to database via axios API
+      axios
+        .post("http://localhost:5000/posts/add", post)
+        .then((res) => console.log(res.data)); //log the result to console
 
-    //Take user back to homepage
-    window.location = "/";
+      //Take user back to homepage
+      window.location = "/";
+    }
+
+
   }
   /*
     render() {

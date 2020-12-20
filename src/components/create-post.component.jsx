@@ -127,7 +127,7 @@ export default class CreatePost extends Component {
                   <input
                     value={this.state.password}
                     onChange={this.onChangePassword}
-                    type="text"
+                    type="password"
                     className="form-control"
                   />
                 </div>

@@ -9,6 +9,7 @@ const getHashedPassword = (password) => {
   return hash;
 };
 
+//React component
 export default class CreatePost extends Component {
   constructor(props) {
     super(props);

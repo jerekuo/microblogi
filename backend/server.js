@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const passportLocal = require('passport-local').Strategy;
 const session = require('express-session');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
 //dotenv for environment variables
 require('dotenv').config();

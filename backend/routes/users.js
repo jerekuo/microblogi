@@ -11,9 +11,10 @@ const getHashedPassword = (password) => {
 //Get user schema from user.model file
 let User = require("../models/user.model");
 
-//Get current user.
+//Get all users in the database.
 router.route("/").get((req, res) => {
-  res.send(req.user); //store current user in req.user object if authentication is succesful
+  User.find().then(users => res.json(users)) //If posts are found, return them in JSON format
+    .catch(err => res.status(400).json('Error: '+ err)); //If error is catched return error message
 });
 
 //Route for adding a new user, requires username and pasword

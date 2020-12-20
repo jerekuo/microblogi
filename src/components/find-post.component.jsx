@@ -56,7 +56,7 @@ export default class PostList extends Component {
 
     postList() {
         return this.state.messages.map(currentMessage => {
-            if (currentMessage.user == this.state.username) {
+            if (currentMessage.user === this.state.username) {
                 return <Message message={currentMessage} deleteMessage={this.deleteMessage} key={currentMessage._id} />;
             }
            
